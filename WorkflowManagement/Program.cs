@@ -1,16 +1,25 @@
-using WorkflowManagement.Entities;
+
 using WorkflowManagement.Interfaces;
 using WorkflowManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(configuration.GetConnectionString(("DefaultConnection")));
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 builder.Services.AddScoped<IService<Board>, BoardService>();
+builder.Services.AddScoped<ITicketsService<Ticket>, TicketService>();
+builder.Services.AddScoped<IActivitiesService<Activity>, ActivitiesService>();
 
 var app = builder.Build();
 

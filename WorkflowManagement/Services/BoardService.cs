@@ -7,7 +7,7 @@ public class BoardService : IService<Board>
 {
     public Board Create(Board data)
     {
-        return new Board()
+        return new Board
         {
             Name = data.Name,
             Owner = data.Owner,
