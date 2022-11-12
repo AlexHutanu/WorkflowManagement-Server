@@ -1,15 +1,12 @@
 
+using Microsoft.Data.SqlClient;
 using WorkflowManagement.Interfaces;
 using WorkflowManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var provider = builder.Services.BuildServiceProvider();
-var configuration = provider.GetRequiredService<IConfiguration>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(configuration.GetConnectionString(("DefaultConnection")));
-});
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 
@@ -20,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IService<Board>, BoardService>();
 builder.Services.AddScoped<ITicketsService<Ticket>, TicketService>();
 builder.Services.AddScoped<IActivitiesService<Activity>, ActivitiesService>();
+
+
 
 var app = builder.Build();
 

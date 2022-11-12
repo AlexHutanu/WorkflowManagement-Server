@@ -1,19 +1,15 @@
-﻿
-namespace WorkflowManagement.Data;
+﻿namespace WorkflowManagement.Data;
 
 public class ApplicationDbContext : DbContext
 {
-    
-    protected readonly IConfiguration Configuration;
-    
-    public ApplicationDbContext(IConfiguration configuration)
+
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        Configuration = configuration;
-    }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-        options.UseSqlServer(Configuration.GetConnectionString("ConnectionString"));
+        optionsBuilder.UseSqlServer(
+            "Server=localhost;Database=master;Trusted_Connection=True;TrustServerCertificate=True;");
+        base.OnConfiguring(optionsBuilder);
     }
 
     public DbSet<Board> Boards { get; set; }

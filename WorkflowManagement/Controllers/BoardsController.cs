@@ -25,7 +25,7 @@ public class BoardsController : Controller
     }
 
     [HttpGet("{boardName}")]
-    public IEnumerable<Board> Index(string boardName)
+    public Board Index(string boardName)
     {
         var boards = _boardService.Find(boardName);
 

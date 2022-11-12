@@ -7,33 +7,37 @@ public class BoardService : IService<Board>
 {
     public Board Create(Board data)
     {
-        return new Board
+        var board = new Board
         {
             Name = data.Name,
             Owner = data.Owner,
             Description = data.Description,
             NoOfTickets = data.NoOfTickets
         };
+
+        var contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseSqlServer("Server=localhost;Database=master;Trusted_Connection=True;TrustServerCertificate=True;")
+            .Options;
+
+        using var context = new ApplicationDbContext(contextOptions);
+
+        context.Boards.Add(board);
+        context.SaveChanges();
+
+
+        return board;
     }
 
-    public IEnumerable<Board> Find(string name)
+    public Board Find(string name)
     {
-        var board1 = new Board
-        {
-            Name = $"{name}1",
-            Owner = "Owner1",
-            Description = "Descript1",
-            NoOfTickets = 1
-        };
-        
-        var board2 = new Board
-        {
-            Name = $"{name}2",
-            Owner = "Owner2",
-            Description = "Descript2",
-            NoOfTickets = 2
-        };
+        var contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseSqlServer("Server=localhost;Database=master;Trusted_Connection=True;TrustServerCertificate=True;")
+            .Options;
 
-        return new List<Board> { board1, board2 };
+        using var context = new ApplicationDbContext(contextOptions);
+
+        var boards = context.Boards.Where(board => board.Name == name).FirstOrDefault<Board>();
+
+        return boards;
     }
 }
