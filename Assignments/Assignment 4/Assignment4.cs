@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 
-class TestClass
+class Assignment4
 {
-    public static void Test()
+    public static void Main()
     {
         string[] array = { "Hello", "World" };
 
