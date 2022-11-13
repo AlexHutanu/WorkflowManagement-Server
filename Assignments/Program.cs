@@ -1,8 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Assignments.Assignment_3;
+TestClass.Test();
 
-var john = new Tiger();
-
-john.NoOfLegs = 4;
-john.CanFly = false;
