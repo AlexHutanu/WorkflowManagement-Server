@@ -27,5 +27,14 @@ public class ActivitiesController : Controller
 
         return newActivity;
     }
-    
+
+    [HttpGet("{activityName}")]
+    public ActionResult<Activity> Index(string activityName)
+
+    {
+        var activity = _activitiesService.Find(activityName);
+
+        return activity == null ? NotFound("Activity not found") : activity;
+    }
+
 }

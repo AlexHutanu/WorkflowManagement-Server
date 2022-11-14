@@ -5,6 +5,9 @@ public class Activity
     [Key]
     public Guid Id { get; set; }
     
+    [Column("Name", TypeName = "varchar(200)")]
+    public string? Name { get; set; }
+    
     [Column("Description", TypeName = "varchar(200)")]
     public string? Description { get; set; }
     
