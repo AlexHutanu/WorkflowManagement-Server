@@ -32,11 +32,6 @@ public class BoardsController : Controller
     {
         var board =  _boardService.Find(boardName);
 
-        if (board == null)
-        {
-            return NotFound("Board not found");
-        }
-
-        return board;
+        return board == null ? NotFound("Board not found") : board;
     }
 }

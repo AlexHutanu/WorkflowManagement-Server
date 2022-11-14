@@ -23,4 +23,12 @@ public class TicketsController : Controller
 
         return newTicket;
     }
+
+    [HttpGet("{ticketName}")]
+    public ActionResult<Ticket> Index(string ticketName)
+    {
+        var ticket = _ticketsService.Find(ticketName);
+
+        return ticket == null ? NotFound("Ticket not found") : ticket;
+    }
 }
