@@ -9,9 +9,9 @@ namespace WorkflowManagement.Controllers;
 
 public class TicketsController : Controller
 {
-    private readonly ITicketsService<Ticket> _ticketsService;
+    private readonly IService<Ticket> _ticketsService;
 
-    public TicketsController(ITicketsService<Ticket> ticketsService)
+    public TicketsController(IService<Ticket> ticketsService)
     {
         _ticketsService = ticketsService;
     }

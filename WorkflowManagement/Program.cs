@@ -15,8 +15,8 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<IService<Board>, BoardService>();
-builder.Services.AddScoped<ITicketsService<Ticket>, TicketService>();
-builder.Services.AddScoped<IActivitiesService<Activity>, ActivitiesService>();
+builder.Services.AddScoped<IService<Ticket>, TicketService>();
+builder.Services.AddScoped<IService<Activity>, ActivitiesService>();
 
 
 

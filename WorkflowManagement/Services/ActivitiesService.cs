@@ -5,7 +5,7 @@ using Activity = WorkflowManagement.Entities.Activity;
 
 namespace WorkflowManagement.Services;
 
-public class ActivitiesService : IActivitiesService<Activity>
+public class ActivitiesService : IService<Activity>
 {
 
     public Activity Create(Activity data)
@@ -17,5 +17,11 @@ public class ActivitiesService : IActivitiesService<Activity>
             TimeCreated = data.TimeCreated
         };
     }
+
+    public Activity Find(string name)
+    {
+        throw new NotImplementedException();
+    }
+    
     
 }

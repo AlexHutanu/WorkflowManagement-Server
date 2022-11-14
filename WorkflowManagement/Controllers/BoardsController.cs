@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using WorkflowManagement.Entities;
 using WorkflowManagement.Interfaces;
 
@@ -6,6 +8,7 @@ namespace WorkflowManagement.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[DefaultStatusCode(200)]
 public class BoardsController : Controller
 {
 
@@ -25,10 +28,15 @@ public class BoardsController : Controller
     }
 
     [HttpGet("{boardName}")]
-    public Board Index(string boardName)
+    public ActionResult<Board> Index(string boardName)
     {
-        var boards = _boardService.Find(boardName);
+        var board =  _boardService.Find(boardName);
 
-        return boards;
+        if (board == null)
+        {
+            return NotFound("Board not found");
+        }
+
+        return board;
     }
 }

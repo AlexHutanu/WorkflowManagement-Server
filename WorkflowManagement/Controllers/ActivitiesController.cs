@@ -13,9 +13,9 @@ namespace WorkflowManagement.Controllers;
 public class ActivitiesController : Controller
 {
 
-    private readonly IActivitiesService<Activity> _activitiesService;
+    private readonly IService<Activity> _activitiesService;
 
-    public ActivitiesController(IActivitiesService<Activity> activitiesService)
+    public ActivitiesController(IService<Activity> activitiesService)
     {
         _activitiesService = activitiesService;
     }

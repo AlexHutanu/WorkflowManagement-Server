@@ -3,7 +3,7 @@ using WorkflowManagement.Interfaces;
 
 namespace WorkflowManagement.Services;
 
-public class TicketService : ITicketsService<Ticket>
+public class TicketService : IService<Ticket>
 {
     public Ticket Create(Ticket data)
     {
@@ -14,5 +14,10 @@ public class TicketService : ITicketsService<Ticket>
             Description = data.Description,
             Deadline = data.Deadline
         };
+    }
+
+    public Ticket Find(string name)
+    {
+        throw new NotImplementedException();
     }
 }
