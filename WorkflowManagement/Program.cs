@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IService<Board>, BoardService>();
 builder.Services.AddScoped<IService<BugTicket>, BugTicketService>();
 builder.Services.AddScoped<IService<Activity>, ActivitiesService>();
+builder.Services.AddScoped<IService<User>, UserService>();
 
 
 
@@ -31,6 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
