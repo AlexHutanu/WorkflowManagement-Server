@@ -13,7 +13,7 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Board> Boards { get; set; }
-    public DbSet<Ticket> Ticket { get; set; }
+    public DbSet<BugTicket> BugTicket { get; set; }
     public DbSet<Activity> Activity { get; set; }
 }
 

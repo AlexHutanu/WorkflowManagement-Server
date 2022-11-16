@@ -75,32 +75,52 @@ namespace WorkflowManagement.Migrations
                     b.ToTable("Boards");
                 });
 
-            modelBuilder.Entity("WorkflowManagement.Entities.Ticket", b =>
+            modelBuilder.Entity("WorkflowManagement.Entities.BugTicket", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ActualResult")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("actual_result");
+
+                    b.Property<string>("Asignee")
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("asignee");
 
                     b.Property<string>("Deadline")
                         .IsRequired()
                         .HasColumnType("varchar(200)")
-                        .HasColumnName("Deadline");
+                        .HasColumnName("deadline");
 
                     b.Property<string>("Description")
                         .HasColumnType("varchar(200)")
-                        .HasColumnName("Description");
+                        .HasColumnName("description");
+
+                    b.Property<string>("ExpectedResult")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("expected_result");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(200)")
-                        .HasColumnName("Name");
+                        .HasColumnName("name");
 
-                    b.Property<string>("Owner")
+                    b.Property<string>("Reporter")
                         .HasColumnType("varchar(200)")
-                        .HasColumnName("Owner");
+                        .HasColumnName("reporter");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Status")
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("status");
 
-                    b.ToTable("Ticket");
+                    b.Property<string>("StepsToReproduce")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("steps_to_reproduce");
+
+                    b.ToTable("BugTicket");
                 });
 #pragma warning restore 612, 618
         }

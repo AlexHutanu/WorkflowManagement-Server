@@ -1,19 +1,29 @@
 ﻿namespace WorkflowManagement.Entities;
 
-public class Ticket
+
+public abstract class Ticket
 {
     [Key]
     public Guid Id { get; set; }
     
-    [Column("Name", TypeName = "varchar(200)")]
+    [Column("name", TypeName = "varchar(200)")]
     public string? Name { get; set; }
     
-    [Column("Owner", TypeName = "varchar(200)")]
-    public string? Owner { get; set; }
-    
-    [Column("Description", TypeName = "varchar(200)")]
+    [Column("asignee", TypeName = "varchar(200)")]
+    public string? Asignee { get; set; }
+
+    [Column("reporter", TypeName = "varchar(200)")]
+    public string? Reporter { get; set; }
+
+    [Column("description", TypeName = "varchar(200)")]
     public string? Description { get; init; }
     
-    [Column("Deadline", TypeName = "varchar(200)")]
+    [Column("deadline", TypeName = "varchar(200)")]
     public double Deadline { get; set; }
+    
+    [Column("status", TypeName = "varchar(200)")]
+    public string? Status { get; set; }
 }
+
+
+

@@ -16,6 +16,7 @@ namespace WorkflowManagement.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(200)", nullable: true),
                     Description = table.Column<string>(type: "varchar(200)", nullable: true),
                     Owner = table.Column<string>(type: "varchar(200)", nullable: true),
                     TimeCreated = table.Column<string>(type: "varchar(200)", nullable: false)
@@ -40,18 +41,22 @@ namespace WorkflowManagement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ticket",
+                name: "BugTicket",
                 columns: table => new
                 {
+                    stepstoreproduce = table.Column<string>(name: "steps_to_reproduce", type: "varchar(200)", nullable: false),
+                    expectedresult = table.Column<string>(name: "expected_result", type: "varchar(200)", nullable: false),
+                    actualresult = table.Column<string>(name: "actual_result", type: "varchar(200)", nullable: false),
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Owner = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Description = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Deadline = table.Column<string>(type: "varchar(200)", nullable: false)
+                    name = table.Column<string>(type: "varchar(200)", nullable: true),
+                    asignee = table.Column<string>(type: "varchar(200)", nullable: true),
+                    reporter = table.Column<string>(type: "varchar(200)", nullable: true),
+                    description = table.Column<string>(type: "varchar(200)", nullable: true),
+                    deadline = table.Column<string>(type: "varchar(200)", nullable: false),
+                    status = table.Column<string>(type: "varchar(200)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ticket", x => x.Id);
                 });
         }
 
@@ -65,7 +70,7 @@ namespace WorkflowManagement.Migrations
                 name: "Boards");
 
             migrationBuilder.DropTable(
-                name: "Ticket");
+                name: "BugTicket");
         }
     }
 }
