@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowManagement", "WorkflowManagement\WorkflowManagement.csproj", "{5344030E-0D9D-4D63-8AE5-85E6DACEDB0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignments", "Assignments\Assignments.csproj", "{1CA81E42-C3AA-4381-B870-E0718079DC7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5344030E-0D9D-4D63-8AE5-85E6DACEDB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5344030E-0D9D-4D63-8AE5-85E6DACEDB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5344030E-0D9D-4D63-8AE5-85E6DACEDB0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA81E42-C3AA-4381-B870-E0718079DC7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA81E42-C3AA-4381-B870-E0718079DC7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA81E42-C3AA-4381-B870-E0718079DC7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA81E42-C3AA-4381-B870-E0718079DC7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
