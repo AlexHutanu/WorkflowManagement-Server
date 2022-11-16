@@ -1,5 +1,7 @@
-
+using System.Collections.Immutable;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Data.SqlClient;
+using WorkflowManagement.Handlers;
 using WorkflowManagement.Interfaces;
 using WorkflowManagement.Services;
 
@@ -18,6 +20,9 @@ builder.Services.AddScoped<IService<Board>, BoardService>();
 builder.Services.AddScoped<IService<BugTicket>, BugTicketService>();
 builder.Services.AddScoped<IService<Activity>, ActivitiesService>();
 builder.Services.AddScoped<IService<User>, UserService>();
+
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthHandler>("BasicAuthentication", null);
 
 
 

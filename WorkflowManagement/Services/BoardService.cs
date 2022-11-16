@@ -20,7 +20,7 @@ public class BoardService : IService<Board>
     public Board Create(Board data)
     {
         var board = _boardsRepository.Create(data);
-        
+
         return board;
     }
 
@@ -30,5 +30,5 @@ public class BoardService : IService<Board>
 
         return board;
     }
-    
+
 }

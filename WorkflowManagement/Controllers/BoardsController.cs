@@ -1,7 +1,5 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using WorkflowManagement.Entities;
 using WorkflowManagement.Interfaces;
 
 namespace WorkflowManagement.Controllers;
@@ -18,7 +16,7 @@ public class BoardsController : Controller
     {
         _boardService = boardService;
     }
-    
+
     [HttpPost]
     public Board Index([FromBody] Board body)
     {
@@ -30,7 +28,7 @@ public class BoardsController : Controller
     [HttpGet("{boardName}")]
     public ActionResult<Board> Index(string boardName)
     {
-        var board =  _boardService.Find(boardName);
+        var board = _boardService.Find(boardName);
 
         return board == null ? NotFound("Board not found") : board;
     }

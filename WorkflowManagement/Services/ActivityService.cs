@@ -23,14 +23,14 @@ public class ActivitiesService : IService<Activity>
     public Activity Create(Activity data)
     {
         return _activityRepository.Create(data);
-        
+
     }
 
     public Activity Find(string name)
     {
         return _activityRepository.FindOneByName(name);
-        
+
     }
-    
-    
+
+
 }

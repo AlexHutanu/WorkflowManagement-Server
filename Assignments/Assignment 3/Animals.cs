@@ -2,7 +2,7 @@
 
 public abstract class Animals
 {
-    private  int _noOfLegs;
+    private int _noOfLegs;
 
     private bool _canFly;
 
@@ -17,7 +17,7 @@ public abstract class Animals
         get => _canFly;
         set => _canFly = value;
     }
-    
+
     public abstract void MakeSound();
 
 }

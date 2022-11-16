@@ -5,10 +5,10 @@ public abstract class Ticket
 {
     [Key]
     public Guid Id { get; set; }
-    
+
     [Column("name", TypeName = "varchar(200)")]
     public string? Name { get; set; }
-    
+
     [Column("asignee", TypeName = "varchar(200)")]
     public string? Asignee { get; set; }
 
@@ -17,10 +17,10 @@ public abstract class Ticket
 
     [Column("description", TypeName = "varchar(200)")]
     public string? Description { get; init; }
-    
+
     [Column("deadline", TypeName = "varchar(200)")]
     public double Deadline { get; set; }
-    
+
     [Column("status", TypeName = "varchar(200)")]
     public string? Status { get; set; }
 }

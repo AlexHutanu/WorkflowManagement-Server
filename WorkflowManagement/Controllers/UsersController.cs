@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WorkflowManagement.Interfaces;
 
 namespace WorkflowManagement.Controllers
 {
+    [Authorize]
+    [Route("[controller]")]
+    [ApiController]
+
     public class UsersController : Controller
     {
         private readonly IService<User> _userService;
 
         public UsersController(IService<User> userService)
         {
-            _userService= userService; 
+            _userService = userService;
         }
 
         [HttpPost]
@@ -20,12 +25,17 @@ namespace WorkflowManagement.Controllers
             return newUser;
         }
 
-        [HttpGet]
-        public ActionResult<User> Index(string username)
+        [HttpGet("username")]
+        public async Task<ActionResult<User>> Index()
         {
+            var username = HttpContext.User.Identity.Name;
+
             var user = _userService.Find(username);
 
-            return user == null ? NotFound("User not found") : user;
+            if (user == null)
+                NotFound("User not found");
+
+            return user;
         }
 
     }

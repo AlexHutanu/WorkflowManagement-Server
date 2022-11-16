@@ -17,7 +17,7 @@ class Assignment4
         DateTimeOffset dateNow = DateTimeOffset.Now;
 
         CultureInfo enUs = new CultureInfo("en-US");
-        
+
         Console.WriteLine(enUs.DisplayName);
 
     }

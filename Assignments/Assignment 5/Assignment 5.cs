@@ -22,10 +22,10 @@ class Assignment5
         {
             Console.WriteLine("Calculation done.");
         }
-        
-        #if DEBUG
+
+#if DEBUG
         Console.WriteLine("You are in debugging mode");
-        #endif
+#endif
 
         List<string> users = new List<string> { "Sam", "John", "Mike" };
 

@@ -7,9 +7,9 @@ namespace WorkflowManagement.Repositories
 
         private ApplicationDbContext _context;
 
-        public UserRepository(ApplicationDbContext context) 
+        public UserRepository(ApplicationDbContext context)
         {
-            _context= context;
+            _context = context;
         }
         public User Create(User userData)
         {
@@ -17,7 +17,7 @@ namespace WorkflowManagement.Repositories
             {
                 Name = userData.Name,
                 Email = userData.Email,
-                Password = userData.Password,
+                Password = userData.Password
             };
 
             _context.User.Add(user);
@@ -33,7 +33,7 @@ namespace WorkflowManagement.Repositories
 
         public User FindOneByName(string name)
         {
-            throw new NotImplementedException();
+            return _context.User.FirstOrDefault(user => user.Name == name);
         }
     }
 }

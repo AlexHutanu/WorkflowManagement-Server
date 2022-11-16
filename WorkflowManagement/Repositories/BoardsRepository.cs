@@ -29,7 +29,7 @@ public class BoardsRepository : IRepository<Board>
 
     public Board FindOneByName(string name)
     {
-       return _context.Boards.FirstOrDefault(board => board.Name == name);
+        return _context.Boards.FirstOrDefault(board => board.Name == name);
 
     }
 

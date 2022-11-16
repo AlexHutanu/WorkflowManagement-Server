@@ -6,7 +6,7 @@ namespace WorkflowManagement.Services;
 
 public class BugTicketService : IService<BugTicket>
 {
-    
+
     private BugTicketRepository _bugTicketRepository;
 
     public BugTicketService()

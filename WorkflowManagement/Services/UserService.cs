@@ -3,7 +3,7 @@ using WorkflowManagement.Repositories;
 
 namespace WorkflowManagement.Services
 {
-    public class UserService: IService<User>
+    public class UserService : IService<User>
     {
         private UserRepository _userRepository;
 
