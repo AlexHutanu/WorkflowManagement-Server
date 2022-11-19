@@ -6,9 +6,11 @@ namespace WorkflowManagement.Entities;
 public class Board
 {
     [Key]
-    public string? Name { get; set; }
+    public Guid Id { get; set; }
 
-    [Required(ErrorMessage = "Name field is required")]
+    [Column("Name", TypeName = "varchar(200)")]
+    public string? Name { get; set; }
+    
     [StringLength(maximumLength: 100, MinimumLength = 2)]
     [Column("OwnerName", TypeName = "varchar(200)")]
     public string? Owner { get; set; }

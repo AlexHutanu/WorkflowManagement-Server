@@ -4,7 +4,6 @@ using WorkflowManagement.Interfaces;
 
 namespace WorkflowManagement.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
 
@@ -25,6 +24,7 @@ namespace WorkflowManagement.Controllers
             return newUser;
         }
 
+        [Authorize]
         [HttpGet("username")]
         public async Task<ActionResult<User>> Index()
         {
