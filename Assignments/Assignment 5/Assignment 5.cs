@@ -2,7 +2,7 @@
 
 class Assignment5
 {
-    public static void Run()
+    public static void Main()
     {
         try
         {
