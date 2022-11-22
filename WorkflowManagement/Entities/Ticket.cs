@@ -16,7 +16,7 @@ public abstract class Ticket
     public string? Reporter { get; set; }
 
     [Column("description", TypeName = "varchar(200)")]
-    public string? Description { get; init; }
+    public string? Description { get; set; }
 
     [Column("deadline", TypeName = "varchar(200)")]
     public double Deadline { get; set; }
