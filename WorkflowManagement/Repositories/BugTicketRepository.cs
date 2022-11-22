@@ -20,7 +20,6 @@ public class BugTicketRepository : IRepository<BugTicket>
             Name = ticketData.Name,
             Asignee = ticketData.Asignee,
             Reporter = ticketData.Reporter,
-            Boards = ticketData.Boards,
             Description = ticketData.Description,
             Deadline = ticketData.Deadline,
             Status = ticketData.Status,
