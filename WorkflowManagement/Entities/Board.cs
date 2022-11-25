@@ -6,7 +6,7 @@ namespace WorkflowManagement.Entities;
 public class Board
 {
     [Key]
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     [Column("Name", TypeName = "varchar(200)")]
     public string? Name { get; set; }

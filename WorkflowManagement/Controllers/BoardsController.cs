@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using WorkflowManagement.Commands;
 using WorkflowManagement.Interfaces;
+using WorkflowManagement.Queries;
 
 namespace WorkflowManagement.Controllers;
 
@@ -11,25 +14,35 @@ public class BoardsController : Controller
 {
 
     private readonly IService<Board> _boardService;
+    private readonly IMediator _mediator;
 
-    public BoardsController(IService<Board> boardService)
+    public BoardsController(IService<Board> boardService, IMediator mediator)
     {
         _boardService = boardService;
+        _mediator = mediator;
     }
 
     [HttpPost]
-    public Board Index([FromBody] Board body)
+    public async Task<IActionResult> Index([FromBody] Board body)
     {
-        Board newBoard = _boardService.Create(body);
+        // Board newBoard = _boardService.Create(body);
 
-        return newBoard;
+        // return newBoard;
+
+        var command = new CreateBoardCommand() { NewBoard = body };
+        var result = await _mediator.Send(command);
+        return Ok(result);
     }
 
     [HttpGet("{boardName}")]
-    public ActionResult<Board> Index(string boardName)
+    public async  Task<ActionResult<Board>> Index(string boardName)
     {
-        var board = _boardService.Find(boardName);
+        // var board = _boardService.Find(boardName);
 
-        return board == null ? NotFound("Board not found") : board;
+        var result = await _mediator.Send(new GetAllBoardsQuery(boardName));
+
+        // return board == null ? NotFound("Board not found") : board;
+
+        return Ok(result);
     }
 }
