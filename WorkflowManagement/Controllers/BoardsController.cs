@@ -39,7 +39,7 @@ public class BoardsController : Controller
     {
         // var board = _boardService.Find(boardName);
 
-        var result = await _mediator.Send(new GetAllBoardsQuery(boardName));
+        var result = await _mediator.Send(new GetBoardQuery(boardName));
 
         // return board == null ? NotFound("Board not found") : board;
 
