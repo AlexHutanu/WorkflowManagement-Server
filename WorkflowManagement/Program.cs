@@ -22,7 +22,7 @@ builder.Services.AddScoped<IService<Board>, BoardService>();
 builder.Services.AddScoped<IService<BugTicket>, BugTicketService>();
 builder.Services.AddScoped<IService<Activity>, ActivitiesService>();
 builder.Services.AddScoped<IService<User>, UserService>();
-builder.Services.AddMediatR(typeof(GetAllBoardsQuery));
+builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthHandler>("BasicAuthentication", null);

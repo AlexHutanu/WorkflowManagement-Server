@@ -2,11 +2,11 @@ using MediatR;
 
 namespace WorkflowManagement.Queries;
 
-public class GetAllBoardsQuery : IRequest<Board>
+public class GetBoardQuery : IRequest<Board>
 {
     public string? Name { get; }
 
-    public GetAllBoardsQuery(string name)
+    public GetBoardQuery(string name)
     {
         Name = name;
     }
