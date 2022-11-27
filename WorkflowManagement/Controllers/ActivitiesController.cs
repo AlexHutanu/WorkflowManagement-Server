@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using WorkflowManagement.Commands;
 using WorkflowManagement.Entities;
 using WorkflowManagement.Interfaces;
+using WorkflowManagement.Queries;
 using Activity = WorkflowManagement.Entities.Activity;
 
 namespace WorkflowManagement.Controllers;
@@ -13,28 +16,28 @@ namespace WorkflowManagement.Controllers;
 public class ActivitiesController : Controller
 {
 
-    private readonly IService<Activity> _activitiesService;
+    private readonly IMediator _mediator;
 
-    public ActivitiesController(IService<Activity> activitiesService)
+    public ActivitiesController(IMediator mediator)
     {
-        _activitiesService = activitiesService;
+        _mediator = mediator;
     }
 
     [HttpPost]
-    public Activity Index([FromBody] Activity body)
+    public async Task<IActionResult> Index([FromBody] Activity body)
     {
-        Activity newActivity = _activitiesService.Create(body);
-
-        return newActivity;
+        var command = new CreateActivityCommand() { NewActivity = body };
+        var result = await _mediator.Send(command);
+        return Ok(result);
     }
 
     [HttpGet("{activityName}")]
-    public ActionResult<Activity> Index(string activityName)
-
+    public async Task<IActionResult> Index(string activityName)
     {
-        var activity = _activitiesService.Find(activityName);
 
-        return activity == null ? NotFound("Activity not found") : activity;
+        var result = await _mediator.Send(new GetActivityQuery(activityName));
+
+        return Ok(result);
     }
 
 }

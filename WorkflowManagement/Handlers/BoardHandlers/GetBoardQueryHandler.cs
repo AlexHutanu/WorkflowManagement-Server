@@ -1,7 +1,7 @@
 using MediatR;
 using WorkflowManagement.Queries;
 
-namespace WorkflowManagement.Handlers;
+namespace WorkflowManagement.Handlers.BoardHandlers;
 
 public class GetBoardQueryHandler : IRequestHandler<GetBoardQuery, Board>
 {
@@ -14,6 +14,6 @@ public class GetBoardQueryHandler : IRequestHandler<GetBoardQuery, Board>
 
     public async Task<Board> Handle(GetBoardQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Boards.FirstAsync(board => board.Name == request.Name);
+        return await _context.Boards.FirstAsync(board => board.Name == request.Name, cancellationToken: cancellationToken);
     }
 }

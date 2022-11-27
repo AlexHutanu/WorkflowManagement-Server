@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using WorkflowManagement.Attributes;
+using WorkflowManagement.Commands;
 using WorkflowManagement.Entities;
 using WorkflowManagement.Interfaces;
+using WorkflowManagement.Queries;
 using WorkflowManagement.Services;
 using ILogger = WorkflowManagement.Interfaces.ILogger;
 using LoggerFactory = WorkflowManagement.Services.LoggerFactory;
@@ -13,33 +16,28 @@ namespace WorkflowManagement.Controllers;
 
 public class BugTicketsController : Controller
 {
-    private readonly IService<BugTicket> _bugTicketsService;
+    private readonly IMediator _mediator;
 
 
-    public BugTicketsController(IService<BugTicket> bugTicketsService)
+    public BugTicketsController(IMediator mediator)
     {
-        _bugTicketsService = bugTicketsService;
+        _mediator = mediator;
     }
 
     [HttpPost]
-    public BugTicket Index([FromBody] BugTicket body)
+    public async Task<IActionResult> Index([FromBody] BugTicket body)
     {
-        BugTicket newBugTicket = _bugTicketsService.Create(body);
-
-        return newBugTicket;
+        var command = new CreateBugTicketCommand() { NewBugTicket = body };
+        var result = await _mediator.Send(command);
+        return Ok(result);
     }
 
     [HttpGet("{ticketName}")]
     [Log("getTicket")]
-    public ActionResult<Ticket> Index(string ticketName)
+    public async Task<IActionResult> Index(string ticketName)
     {
-        var logger = LoggerFactory.GetLogger();
-        
-        logger.Error("error");
-        logger.Info("info");
-        
-        var ticket = _bugTicketsService.Find(ticketName);
-        
-        return ticket == null ? NotFound("Ticket not found") : ticket;
+        var result = await _mediator.Send(new GetBugTicketQuery(ticketName));
+
+        return Ok(result);
     }
 }

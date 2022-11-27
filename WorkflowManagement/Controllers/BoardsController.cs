@@ -13,21 +13,16 @@ namespace WorkflowManagement.Controllers;
 public class BoardsController : Controller
 {
 
-    private readonly IService<Board> _boardService;
     private readonly IMediator _mediator;
 
-    public BoardsController(IService<Board> boardService, IMediator mediator)
+    public BoardsController(IMediator mediator)
     {
-        _boardService = boardService;
         _mediator = mediator;
     }
 
     [HttpPost]
     public async Task<IActionResult> Index([FromBody] Board body)
     {
-        // Board newBoard = _boardService.Create(body);
-
-        // return newBoard;
 
         var command = new CreateBoardCommand() { NewBoard = body };
         var result = await _mediator.Send(command);
@@ -37,12 +32,9 @@ public class BoardsController : Controller
     [HttpGet("{boardName}")]
     public async  Task<ActionResult<Board>> Index(string boardName)
     {
-        // var board = _boardService.Find(boardName);
 
         var result = await _mediator.Send(new GetBoardQuery(boardName));
-
-        // return board == null ? NotFound("Board not found") : board;
-
+        
         return Ok(result);
     }
 }

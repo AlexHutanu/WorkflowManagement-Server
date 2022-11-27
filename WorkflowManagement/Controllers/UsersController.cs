@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WorkflowManagement.Commands;
 using WorkflowManagement.Interfaces;
+using WorkflowManagement.Queries;
 
 namespace WorkflowManagement.Controllers
 {
@@ -9,33 +12,29 @@ namespace WorkflowManagement.Controllers
 
     public class UsersController : Controller
     {
-        private readonly IService<User> _userService;
+        private readonly IMediator _mediator;
 
-        public UsersController(IService<User> userService)
+        public UsersController(IMediator mediator)
         {
-            _userService = userService;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public User Index([FromBody] User body)
+        public async Task<IActionResult> Index([FromBody] User body)
         {
-            User newUser = _userService.Create(body);
+            var command = new CreateUserCommand() { NewUser = body };
+            var result = await _mediator.Send(command);
 
-            return newUser;
+            return Ok(result);
         }
 
         [Authorize]
         [HttpGet("username")]
-        public async Task<ActionResult<User>> Index()
+        public async Task<IActionResult> Index(string userName)
         {
-            var username = HttpContext.User.Identity.Name;
+            var result = await _mediator.Send(new GetUserQuery(userName));
 
-            var user = _userService.Find(username);
-
-            if (user == null)
-                NotFound("User not found");
-
-            return user;
+            return Ok(result);
         }
 
     }

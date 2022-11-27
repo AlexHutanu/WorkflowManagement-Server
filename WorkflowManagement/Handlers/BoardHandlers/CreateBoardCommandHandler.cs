@@ -1,7 +1,7 @@
 using MediatR;
 using WorkflowManagement.Commands;
 
-namespace WorkflowManagement.Handlers;
+namespace WorkflowManagement.Handlers.BoardHandlers;
 
 public class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, Board>
 {
